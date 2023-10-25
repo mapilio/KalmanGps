@@ -17,7 +17,23 @@ def get_data_csv(csv_file: str = None):
 
     # Convert the DataFrame into a dictionary
     data_dict = df.to_dict(orient='list')
-    data_dict['timestamp_ns']=[int(str(row)[:-3]) for row in data_dict['timestamp_ns']]
+    data_dict['timestamp_ns'] = [int(str(row)[:-3]) for row in data_dict['timestamp_ns']]
+    return data_dict
+
+
+def modify_time(data):
+    df = pd.DataFrame(data)
+
+    # Convert the "current_time" column to datetime objects
+    df['current_time'] = pd.to_datetime(df['current_time'])
+
+    # Convert datetime objects to timestamps with nanoseconds
+    df['timestamp_ns'] = df['current_time'].astype(int)
+    df.set_index('timestamp_ns')
+
+    # Convert the DataFrame into a dictionary
+    data_dict = df.to_dict(orient='list')
+    data_dict['timestamp_ns'] = [int(str(row)[:-3]) for row in data_dict['timestamp_ns']]
     return data_dict
 
 

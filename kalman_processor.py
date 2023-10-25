@@ -1,5 +1,5 @@
 from addict import Dict
-from data import get_data_csv
+from data import get_data_csv ,modify_time
 import numpy as np
 from madgwickahrs import MadgwickAHRS
 from statistics import mean
@@ -125,7 +125,8 @@ class Kalman():
             if self.csv_path is not None:
                 self.data = get_data_csv(csv_file=self.csv_path)
             else:
-                self.data = kwargs
+                self.data=modify_time(kwargs)
+
         except:
             print("Data cant obtained")
 
@@ -159,5 +160,5 @@ class Kalman():
 
 if __name__ == '__main__':
     csv_path = 'sensor_data/20-10-23_1.csv'
-    klmn = Kalman(csv_path=csv_path)
+    klmn = Kalman(csv_path=csv_path,mapit=True)
     klmn()
