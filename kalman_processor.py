@@ -73,7 +73,8 @@ class Kalman():
         self.set_kalman_parameters()
         self.perform_kalman()
         self.extract_map()
-
+        return {'lat': self.Yfilter,
+                'lon': self.Xfilter}
 
     def perform_kalman(self):
         self.Xfilter = []
@@ -140,6 +141,7 @@ class Kalman():
         gmap1.draw("results_clss.html")
 
         print("Done...")
+
 
 
 
