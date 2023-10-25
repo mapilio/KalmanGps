@@ -142,7 +142,16 @@ class Kalman():
 
         print("Done...")
 
+    def check_requires(self):
+        self.require_list = ['lat', 'lon', 'altitude', 'gyrx', 'gyry', 'gyrz', 'accx', 'accy', 'accz',
+                             'magx', 'magy', 'magz', 'timestamp_ns']
 
+        for key in self.require_list:
+            if key not in self.data.keys():
+                print(f'"{key}" is not exist in data.')
+
+        if len(self.data['accx']) == 0:
+            print('accx is must bigger than 0.')
 
 
 if __name__ == '__main__':
