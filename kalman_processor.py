@@ -10,9 +10,10 @@ import gmplot
 
 class Kalman():
 
-    def __init__(self, csv_path=None):
+    def __init__(self, csv_path=None, mapit=False):
         self.samples = None
         self.csv_path = csv_path
+        self.mapit = mapit
 
     def __call__(self, **kwargs):
 
@@ -72,7 +73,9 @@ class Kalman():
 
         self.set_kalman_parameters()
         self.perform_kalman()
-        self.extract_map()
+        if self.mapit:
+            self.extract_map()
+
         return {'lat': self.Yfilter,
                 'lon': self.Xfilter}
 
