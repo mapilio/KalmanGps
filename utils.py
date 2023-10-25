@@ -1,17 +1,18 @@
 from math import *
 import numpy as np
 
-
 # Notation used coming from: https://www.bzarg.com/p/how-a-kalman-filter-works-in-pictures/
 def prediction(X_hat_t_1, P_t_1, F_t, B_t, U_t, Q_t):
     X_hat_t = F_t.dot(X_hat_t_1) + (B_t.dot(U_t))
     P_t = np.diag(np.diag(F_t.dot(P_t_1).dot(F_t.transpose()))) + Q_t
     return X_hat_t, P_t
+    
 def update(X_hat_t, P_t, Z_t, R_t, H_t):
     K_prime = P_t.dot(H_t.transpose()).dot(np.linalg.inv(H_t.dot(P_t).dot(H_t.transpose()) + R_t))
     X_t = X_hat_t + K_prime.dot(Z_t - H_t.dot(X_hat_t))
     P_t = P_t - K_prime.dot(H_t).dot(P_t)
     return X_t, P_t
+
 def rotaitonMatrix(heading, attitude, bank):
     '''
     :returns: rotation array in numpy format
@@ -35,9 +36,10 @@ def rotaitonMatrix(heading, attitude, bank):
     m21 = sh * sa * cb + ch * sb
     m22 = -sh * sa * sb + ch * cb
     return np.array([[m00, m01, m02], [m10, m11, m12], [m20, m21, m22]])
+    
 def getDistance(lat1, lon1, lat2, lon2):
     '''
-    refernce: http://code.activestate.com/recipes/577594-gps-distance-and-bearing-between-two-gps-points/
+    reference: http://code.activestate.com/recipes/577594-gps-distance-and-bearing-between-two-gps-points/
     '''
     R = 6371.0
     lat1 = radians(lat1)
@@ -50,6 +52,7 @@ def getDistance(lat1, lon1, lat2, lon2):
     c = 2 * atan2(sqrt(a), sqrt(1 - a))
     distance = R * c
     return distance * 1000.0
+
 def getBearing(lat1,lon1,lat2,lon2):
     '''
     reference: http://code.activestate.com/recipes/577594-gps-distance-and-bearing-between-two-gps-points/
