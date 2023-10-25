@@ -1,5 +1,5 @@
 from addict import Dict
-from data import get_data_csv ,modify_time
+from data import get_data_csv, modify_time
 import numpy as np
 from madgwickahrs import MadgwickAHRS
 from statistics import mean
@@ -16,9 +16,14 @@ class Kalman():
         self.mapit = mapit
 
     def __call__(self, **kwargs):
+        try:
+            self.get_data(**kwargs)
+        except:
+            print('Data couldn`t obtained. Process is being continuing without kalman filter')
+            return kwargs
 
-        self.get_data(**kwargs)
-        self.check_requires()
+        if not self.check_requires():
+            return kwargs
         self.samples = len(self.data['accx'])
         print("Interpolating...")
 
@@ -121,14 +126,10 @@ class Kalman():
         self.X_hat_t = np.array([[self.gpsLongitudeInterpolated[0]], [self.gpsLatitudeInterpolated[0]], [0], [0]])
 
     def get_data(self, **kwargs):
-        try:
-            if self.csv_path is not None:
-                self.data = get_data_csv(csv_file=self.csv_path)
-            else:
-                self.data=modify_time(kwargs)
-
-        except:
-            print("Data cant obtained")
+        if self.csv_path is not None:
+            self.data = get_data_csv(csv_file=self.csv_path)
+        else:
+            self.data = modify_time(kwargs)
 
     def extract_map(self):
         # reducing data points to 100 for plotting on google maps
@@ -152,13 +153,17 @@ class Kalman():
 
         for key in self.require_list:
             if key not in self.data.keys():
-                print(f'"{key}" is not exist in data.')
+                print(f'"{key}" is not exist in data. Process is being continuing without kalman filter')
+                return False
 
         if len(self.data['accx']) == 0:
-            print('accx is must bigger than 0.')
+            print(
+                'accx is must bigger than 0 to perform kalman filter. Process is being continuing without kalman filter')
+            return False
+        return True
 
 
 if __name__ == '__main__':
     csv_path = 'sensor_data/20-10-23_1.csv'
-    klmn = Kalman(csv_path=csv_path,mapit=True)
+    klmn = Kalman(csv_path=csv_path, mapit=True)
     klmn()
