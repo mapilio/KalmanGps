@@ -3,7 +3,7 @@ import pandas as pd
 
 def get_data_csv(csv_file: str = None):
     if csv_file is None:
-        csv_file = 'sensor_data/20-10-23_0.csv'
+        print("csv file could not found.")
     print("Reading files...")
     # Read the CSV file into a DataFrame
     df = pd.read_csv(csv_file)
