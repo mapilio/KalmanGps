@@ -1,5 +1,6 @@
 from math import *
 import numpy as np
+import pandas as pd
 
 # Notation used coming from: https://www.bzarg.com/p/how-a-kalman-filter-works-in-pictures/
 def prediction(X_hat_t_1, P_t_1, F_t, B_t, U_t, Q_t):
@@ -62,3 +63,12 @@ def getBearing(lat1,lon1,lat2,lon2):
     x = cos(lat1) * sin(lat2) \
         - sin(lat1) * cos(lat2) * cos(dLon)
     return atan2(y, x)
+
+def csv_writter(data,path):
+    try:
+        df = pd.DataFrame(data)
+        df.to_csv(path+'output.csv', index=False, header=True)
+        print("Data successfully saved.")
+    except:
+        print("Data could not save.")
+
