@@ -1,6 +1,4 @@
-from addict import Dict
 from data import get_data_csv, modify_time
-import numpy as np
 from madgwickahrs import MadgwickAHRS
 from statistics import mean
 import math
@@ -10,10 +8,11 @@ import gmplot
 
 class Kalman():
 
-    def __init__(self, csv_path=None, mapit=False):
+    def __init__(self, csv_path=None, output_path=None, mapit=False):
         self.samples = None
         self.csv_path = csv_path
         self.mapit = mapit
+        self.output_path = output_path
 
     def __call__(self, **kwargs):
         try:
@@ -78,11 +77,15 @@ class Kalman():
 
         self.set_kalman_parameters()
         self.perform_kalman()
+
+        data = {'lat': self.Yfilter,
+                'lon': self.Xfilter}
+
         if self.mapit:
             self.extract_map()
-
-        return {'lat': self.Yfilter,
-                'lon': self.Xfilter}
+        if self.output_path is not None:
+            csv_writter(data=data, path=self.output_path)
+        return data
 
     def perform_kalman(self):
         self.Xfilter = []
@@ -164,6 +167,6 @@ class Kalman():
 
 
 if __name__ == '__main__':
-    csv_path = 'sensor_data/20-10-23_1.csv'
-    klmn = Kalman(csv_path=csv_path, mapit=True)
-    klmn()
+    csv_path = '/home/visio-ai/Desktop/phoneandgoprophotos/30-10/images/30-10-23-0.csv'
+    klmn = Kalman(csv_path=csv_path, output_path='/home/visio-ai/PycharmProjects/Kalmangps/', mapit=True)
+    print(klmn())
