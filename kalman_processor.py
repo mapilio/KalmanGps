@@ -4,6 +4,7 @@ from statistics import mean
 import math
 from utils import *
 import gmplot
+import argparse
 
 
 class Kalman():
@@ -166,7 +167,28 @@ class Kalman():
         return True
 
 
+def parser():
+    # Define the command line arguments
+    parser = argparse.ArgumentParser(
+        description='KalmanGps is an advanced GPS correction tool that utilizes sensor data, including magnetometer, gyroscope, accelerometer, and GPS information, to provide accurate and corrected latitude and longitude coordinates. This application is particularly useful for scenarios where precise location data is essential, such as navigation systems, robotics, or any application requiring accurate positioning.')
+    parser.add_argument('-I', '--input_path', type=str,
+                        help='Path to the input data file containing sensor information (magnetometer, gyro, ACC, timestamp_ns, and GPS data).')
+    parser.add_argument('-O', '--output_path', type=str,
+                        help='Path to save the corrected latitude and longitude data as csv file.')
+    parser.add_argument('-M', '--mapit', action='store_true',
+                        help='Flag to visualize the corrected data on a map. If specified, the application will generate a map displaying the corrected GPS coordinates.')
+
+    # Parse the command line arguments
+    args = parser.parse_args()
+
+    return args
+
+
+def main():
+    args = parser()
+    klmn = Kalman(csv_path=args.input_path, output_path=args.output_path, mapit=args.mapit)
+    output = klmn()
+
+
 if __name__ == '__main__':
-    csv_path = '/home/visio-ai/Desktop/phoneandgoprophotos/30-10/images/30-10-23-0.csv'
-    klmn = Kalman(csv_path=csv_path, output_path='/home/visio-ai/PycharmProjects/Kalmangps/', mapit=True)
-    print(klmn())
+    main()
