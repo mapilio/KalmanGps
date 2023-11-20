@@ -15,6 +15,9 @@ def get_data_csv(csv_file: str = None):
     df['timestamp_ns'] = df['current_time'].astype(int)
     df.set_index('timestamp_ns')
 
+    # Get rows between 'start_row' and 'end_row'
+    # df = df.iloc[10:-10]
+
     # Convert the DataFrame into a dictionary
     data_dict = df.to_dict(orient='list')
     data_dict['timestamp_ns'] = [int(str(row)[:-3]) for row in data_dict['timestamp_ns']]
