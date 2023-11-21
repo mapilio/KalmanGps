@@ -1,7 +1,0 @@
-[tool.setuptools.packages.find]
-name = "KalmanGps"
-version = "0.0.2"
-where = ["."]
-include = ['quaternion', 'utils', 'kalman_processor', 'data', 'madgwickahrs', 'version']
-exclude = []
-namespaces = false
