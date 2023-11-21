@@ -1,4 +1,22 @@
-# KalmanGps
+<div align="center">
+<h1>KalmanGps</h1>
+</div>
+<div align="center">
+    <a href="https://github.com/mapilio/KalmanGps/actions/workflows/ci.yml)">
+      <img src="https://github.com/mapilio/KalmanGps/actions/workflows/ci.yml/badge.svg" alt="KalmanGps CI"></a>
+   <a href="https://github.com/mapilio/kalmangps/blob/main/LICENSE">
+      <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="mit-license"></a>
+   <a href="https://pypi.org/project/kalmangps/">
+      <img src="https://img.shields.io/pypi/v/kalmangps?color=purple" alt="PyPI version"></a>
+   <a href="https://pypistats.org/packages/kalmangps">
+      <img src="https://img.shields.io/pypi/dm/kalmangps.svg?color=9300B4" alt="kalmangps-download-tracker"></a>
+   <a href="">
+      <img src="https://img.shields.io/github/stars/mapilio/kalmangps?color=blue" alt="stars"></a>
+   <a href="">
+      <img src="https://img.shields.io/github/issues-raw/mapilio/kalmangps?color=darkred" alt="issue-counter"></a>
+   <a href="">
+      <img src="https://img.shields.io/github/release-date-pre/mapilio/kalmangps?color=DD0017 " alt="release-date-badge"></a>
+</div>
 
 ## Overview
 
