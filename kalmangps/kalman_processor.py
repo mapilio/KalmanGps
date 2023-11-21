@@ -1,8 +1,8 @@
-from components.data import get_data_csv, modify_time
-from components.madgwickahrs import MadgwickAHRS
+from .components.data import get_data_csv, modify_time
+from .components.madgwickahrs import MadgwickAHRS
 from statistics import mean
 import math
-from components.utils import *
+from .components.utils import *
 import gmplot
 import argparse
 
