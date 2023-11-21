@@ -63,6 +63,16 @@ Example command:
 ```bash
 python kalman_processor.py --input_path /path/to/input_csv --output_path /path/to/output.csv --mapit 
 ```
+or
+
+```python
+from kalmangps.kalman_processor import Kalman
+input_path=r'' 
+output_path=r''
+klmn = Kalman(csv_path=input_path, output_path=output_path, mapit=True)
+output = klmn()
+```
+
 
 ### Contribution
 
