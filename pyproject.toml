@@ -1,3 +1,5 @@
+name = "KalmanGps"
+version = "0.0.2"
 [tool.setuptools.packages.find]
 where = ["."]
 include = ['quaternion', 'utils', 'kalman_processor', 'data', 'madgwickahrs', 'version']
