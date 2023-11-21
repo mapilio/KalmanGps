@@ -16,12 +16,12 @@ def get_requirements():
 
 def get_version():
     cwd = os.path.abspath(os.path.dirname(__file__))
-    current_version = os.path.join(cwd, "version.py")
+    current_version = os.path.join(cwd, "kalman_gps","components","version.py")
     with io.open(current_version, encoding = "utf-8") as f:
         return re.search(r'^__version__ = [\'"]([^\'"]*)[\'"]', f.read(), re.M).group(1)
 
 setuptools.setup(
-    name = "KalmanGps",
+    name = "kalman_gps",
     version = get_version(),
     author = "Mapilio",
     description = "Kalman Filter for GPS Metadata Correction",
@@ -33,7 +33,7 @@ setuptools.setup(
     install_requires = get_requirements(),
     entry_points = {
         "console_scripts": [
-            "KalmanGps=KalmanGps:__init__"
+            "kalman_gps=kalman_gps:__init__"
         ]
     }
 )

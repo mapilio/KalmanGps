@@ -1,8 +1,8 @@
-from data import get_data_csv, modify_time
-from madgwickahrs import MadgwickAHRS
+from components.data import get_data_csv, modify_time
+from components.madgwickahrs import MadgwickAHRS
 from statistics import mean
 import math
-from utils import *
+from components.utils import *
 import gmplot
 import argparse
 
@@ -147,7 +147,7 @@ class Kalman():
         gmap1.apikey = "AIzaSyDvvwPIEA8T9IUxPKaRZ6gp2f6xRtBYICU"
         gmap1.scatter(self.data['lat'], self.data['lon'], color='r', size=0.3, marker=False)
         gmap1.scatter(self.Yfilter, self.Xfilter, color='g', size=0.4, marker=False)
-        gmap1.draw("results_clss.html")
+        gmap1.draw(self.output_path+"results_clss.html")
 
         print("Done...")
 
@@ -170,7 +170,7 @@ class Kalman():
 def parser():
     # Define the command line arguments
     parser = argparse.ArgumentParser(
-        description='KalmanGps is an advanced GPS correction tool that utilizes sensor data, including magnetometer, gyroscope, accelerometer, and GPS information, to provide accurate and corrected latitude and longitude coordinates. This application is particularly useful for scenarios where precise location data is essential, such as navigation systems, robotics, or any application requiring accurate positioning.')
+        description='kalman_gps is an advanced GPS correction tool that utilizes sensor data, including magnetometer, gyroscope, accelerometer, and GPS information, to provide accurate and corrected latitude and longitude coordinates. This application is particularly useful for scenarios where precise location data is essential, such as navigation systems, robotics, or any application requiring accurate positioning.')
     parser.add_argument('-I', '--input_path', type=str,
                         help='Path to the input data file containing sensor information (magnetometer, gyro, ACC, timestamp_ns, and GPS data).')
     parser.add_argument('-O', '--output_path', type=str,
