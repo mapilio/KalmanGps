@@ -1,2 +1,5 @@
-[tool.setuptools]
-py-modules = []
+[tool.setuptools.packages.find]
+where = ["."]
+include = ['quaternion', 'utils', 'kalman_processor', 'data', 'madgwickahrs', 'version']
+exclude = []
+namespaces = false
