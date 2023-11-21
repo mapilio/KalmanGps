@@ -2,7 +2,7 @@
 <h1>KalmanGps</h1>
 </div>
 <div align="center">
-    <a href="https://github.com/mapilio/KalmanGps/actions/workflows/ci.yml)">
+    <a href="https://github.com/mapilio/KalmanGps/actions/workflows/ci.yml">
       <img src="https://github.com/mapilio/KalmanGps/actions/workflows/ci.yml/badge.svg" alt="KalmanGps CI"></a>
    <a href="https://github.com/mapilio/kalmangps/blob/main/LICENSE">
       <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="mit-license"></a>
