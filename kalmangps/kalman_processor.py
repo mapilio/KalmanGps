@@ -170,7 +170,7 @@ class Kalman():
 def parser():
     # Define the command line arguments
     parser = argparse.ArgumentParser(
-        description='kalman_gps is an advanced GPS correction tool that utilizes sensor data, including magnetometer, gyroscope, accelerometer, and GPS information, to provide accurate and corrected latitude and longitude coordinates. This application is particularly useful for scenarios where precise location data is essential, such as navigation systems, robotics, or any application requiring accurate positioning.')
+        description='kalmangps is an advanced GPS correction tool that utilizes sensor data, including magnetometer, gyroscope, accelerometer, and GPS information, to provide accurate and corrected latitude and longitude coordinates. This application is particularly useful for scenarios where precise location data is essential, such as navigation systems, robotics, or any application requiring accurate positioning.')
     parser.add_argument('-I', '--input_path', type=str,
                         help='Path to the input data file containing sensor information (magnetometer, gyro, ACC, timestamp_ns, and GPS data).')
     parser.add_argument('-O', '--output_path', type=str,
